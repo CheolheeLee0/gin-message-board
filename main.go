@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gin-message-board/controller"
+	"gin-message-board/controllers"
 	"gin-message-board/tool"
 
 	"github.com/gin-gonic/gin"
@@ -19,7 +19,7 @@ func main() {
 
 //调用controller
 func registRouter(engine *gin.Engine) {
-	new(controller.HelloController).Router(engine)
-	new(controller.UserController).Router(engine)
-	new(controller.MessageController).Router(engine)
+	new(controllers.HelloController).Router(engine)
+	new(controllers.UserController).Router(engine)
+	new(controllers.MessageController).Router(engine)
 }

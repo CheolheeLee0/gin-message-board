@@ -1,10 +1,11 @@
-package controller
+package controllers
 
 import (
 	"fmt"
 
 	"gin-message-board/service"
 	"gin-message-board/tool"
+
 	"github.com/gin-gonic/gin"
 
 	"net/http"
