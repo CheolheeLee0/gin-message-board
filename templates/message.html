@@ -1,0 +1,13 @@
+<!--message.html-->
+
+
+{{ template "header.html" .}}
+
+<!--展示留言标题-->
+<p>{{.payload.Title}}</p>
+
+<!--展示留言内容-->
+<p>{{.payload.Content}}</p>
+
+
+{{ template "footer.html" .}}

@@ -1,25 +1,48 @@
+//package main
+//
+//import (
+//	"gin-message-board/controllers"
+//	"gin-message-board/tool"
+//
+//	"github.com/gin-gonic/gin"
+//)
+//
+//func main() {
+//	tool.SqlEngine()
+//
+//	engin := gin.Default()
+//
+//	registRouter(engin)
+//
+//	engin.Run()
+//}
+//
+////调用controller
+//func registRouter(engine *gin.Engine) {
+//	new(controllers.HelloController).Router(engine)
+//	new(controllers.UserController).Router(engine)
+//	new(controllers.MessageController).Router(engine)
+//}
+
 package main
 
 import (
-	"gin-message-board/controllers"
-	"gin-message-board/tool"
-
 	"github.com/gin-gonic/gin"
 )
 
+var router *gin.Engine
+
 func main() {
-	tool.SqlEngine()
 
-	engin := gin.Default()
+	router = gin.Default()
 
-	registRouter(engin)
+	// 在一开始就处理模板，这样就不必再从磁盘加载它们了。
+	router.LoadHTMLGlob("templates/*")
 
-	engin.Run()
-}
+	// 初始化路由
+	initializeRoutes()
 
-//调用controller
-func registRouter(engine *gin.Engine) {
-	new(controllers.HelloController).Router(engine)
-	new(controllers.UserController).Router(engine)
-	new(controllers.MessageController).Router(engine)
+	// 启动服务
+	router.Run()
+
 }
