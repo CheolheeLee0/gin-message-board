@@ -15,4 +15,4 @@
 # vendor/
 
 # goland
-.idea
+*.idea
