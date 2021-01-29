@@ -89,7 +89,7 @@ func CreateMessage(c *gin.Context) {
 		c.AbortWithStatus(http.StatusBadRequest)
 	}
 	render(c, gin.H{
-		"title":   "Submission Successful",
+		"title":   "提交成功",
 		"payload": m}, "submission-successful.html")
 
 }

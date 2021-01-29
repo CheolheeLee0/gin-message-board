@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// User 用户结构体
 type User struct {
 	gorm.Model
 	Username string `json:"username"`
@@ -16,14 +17,14 @@ type User struct {
 /*
 	硬编码方式返回留言
 */
-var userList = []User{
+var UserList = []User{
 	User{Username: "用户1", Password: "yonghu11111"},
 	User{Username: "用户2", Password: "yonghu22222"},
 }
 
-// 检查用户名和密码
+// IsUserValid 检查用户名和密码
 func IsUserValid(username, password string) bool {
-	for _, u := range userList {
+	for _, u := range UserList {
 		if u.Username == username && u.Password == password {
 			return true
 		}
@@ -41,14 +42,14 @@ func RegisterNewUser(username, password string) (*User, error) {
 
 	u := User{Username: username, Password: password}
 
-	userList = append(userList, u)
+	UserList = append(UserList, u)
 
 	return &u, nil
 }
 
 // 检查提供的用户名是否可用
 func IsUsernameAvailable(username string) bool {
-	for _, u := range userList {
+	for _, u := range UserList {
 		if u.Username == username {
 			return false
 		}

@@ -6,6 +6,7 @@ import (
 	"testing"
 )
 
+// TestUsernameAvailability 测试用户名合法性
 func TestUsernameAvailability(t *testing.T) {
 	tools.SaveLists()
 
@@ -26,6 +27,7 @@ func TestUsernameAvailability(t *testing.T) {
 	tools.RestoreLists()
 }
 
+// TestValidUserRegistration 测试合格的用户注册
 func TestValidUserRegistration(t *testing.T) {
 	tools.SaveLists()
 
@@ -38,6 +40,7 @@ func TestValidUserRegistration(t *testing.T) {
 	tools.RestoreLists()
 }
 
+// TestInvalidUserRegistration 测试不合格的用户注册
 func TestInvalidUserRegistration(t *testing.T) {
 	tools.SaveLists()
 
@@ -56,6 +59,7 @@ func TestInvalidUserRegistration(t *testing.T) {
 	tools.RestoreLists()
 }
 
+// TestUserValidity 测试用户合法性
 func TestUserValidity(t *testing.T) {
 	if !models.IsUserValid("user1", "pass1") {
 		t.Fail()

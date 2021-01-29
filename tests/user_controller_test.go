@@ -12,6 +12,8 @@ import (
 	"testing"
 )
 
+// getLoginPOSTPayload
+// 获取登陆时的表单信息
 func getLoginPOSTPayload() string {
 	params := url.Values{}
 	params.Add("username", "user1")
@@ -20,6 +22,8 @@ func getLoginPOSTPayload() string {
 	return params.Encode()
 }
 
+// getRegistrationPOSTPayload
+// 获取注册时表单信息
 func getRegistrationPOSTPayload() string {
 	params := url.Values{}
 	params.Add("username", "u1")
@@ -28,6 +32,8 @@ func getRegistrationPOSTPayload() string {
 	return params.Encode()
 }
 
+// TestShowRegistrationPageUnauthenticated
+// 测试未认证的展示注释页面
 func TestShowRegistrationPageUnauthenticated(t *testing.T) {
 	r := tools.GetRouter(true)
 
@@ -45,6 +51,8 @@ func TestShowRegistrationPageUnauthenticated(t *testing.T) {
 	})
 }
 
+// TestRegisterUnauthenticated
+// 测试未认证的注册页面
 func TestRegisterUnauthenticated(t *testing.T) {
 	tools.SaveLists()
 	w := httptest.NewRecorder()
@@ -71,6 +79,8 @@ func TestRegisterUnauthenticated(t *testing.T) {
 	tools.RestoreLists()
 }
 
+// TestRegisterUnauthenticatedUnavailableUsername
+// 测试注册未认证的用户名
 func TestRegisterUnauthenticatedUnavailableUsername(t *testing.T) {
 	tools.SaveLists()
 	w := httptest.NewRecorder()
@@ -92,6 +102,8 @@ func TestRegisterUnauthenticatedUnavailableUsername(t *testing.T) {
 	tools.RestoreLists()
 }
 
+// TestShowLoginPageUnauthenticated
+// 测试展示未认证的登录页面
 func TestShowLoginPageUnauthenticated(t *testing.T) {
 	r := tools.GetRouter(true)
 
@@ -109,6 +121,8 @@ func TestShowLoginPageUnauthenticated(t *testing.T) {
 	})
 }
 
+// TestLoginUnauthenticated
+// 测试未认证登录
 func TestLoginUnauthenticated(t *testing.T) {
 	tools.SaveLists()
 	w := httptest.NewRecorder()
@@ -134,6 +148,8 @@ func TestLoginUnauthenticated(t *testing.T) {
 	tools.RestoreLists()
 }
 
+// TestLoginUnauthenticatedIncorrectCredentials
+// 测试未认证不正确的登录证书
 func TestLoginUnauthenticatedIncorrectCredentials(t *testing.T) {
 	tools.SaveLists()
 	w := httptest.NewRecorder()

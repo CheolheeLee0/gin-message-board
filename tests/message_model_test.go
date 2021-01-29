@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-// 测试获取所有留言
+// TestGetAllMessages 测试获取所有留言
 func TestGetAllMessages(t *testing.T) {
 	mlist := models.GetAllMessages()
 
@@ -27,7 +27,7 @@ func TestGetAllMessages(t *testing.T) {
 	}
 }
 
-// 根据留言的ID测试获取留言的函数
+// TestGetMessageByID 根据留言的ID测试获取留言的函数
 func TestGetMessageByID(t *testing.T) {
 	m, err := models.GetMessageByID(1)
 

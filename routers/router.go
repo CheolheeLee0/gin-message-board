@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 路由配置
+// InitializeRoutes 路由配置
 func InitializeRoutes() *gin.Engine {
 	router := gin.Default()
 

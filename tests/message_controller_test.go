@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-// 测试对主页的匿名GET请求是否返回主页
+// TestShowIndexPageUnauthenticated 测试对主页的匿名GET请求是否返回主页
 func TestShowIndexPageUnauthenticated(t *testing.T) {
 	r := tools.GetRouter(true)
 

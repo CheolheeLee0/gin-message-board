@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 确认登录
+// EnsureLoggedIn 确认登录
 func EnsureLoggedIn() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		loggedInInterface, _ := c.Get("is_logged_in")
@@ -17,7 +17,7 @@ func EnsureLoggedIn() gin.HandlerFunc {
 	}
 }
 
-// 确认没登陆
+// EnsureNotLoggedIn 确认没登陆
 func EnsureNotLoggedIn() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		loggedInInterface, _ := c.Get("is_logged_in")
@@ -28,13 +28,13 @@ func EnsureNotLoggedIn() gin.HandlerFunc {
 	}
 }
 
-// 设置用户状态
+// SetUserStatus 设置用户状态
 func SetUserStatus() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		if token, err := c.Cookie("token"); err == nil || token != "" {
-			c.Set("is_logged_in", true)
-		} else {
+		token, err := c.Cookie("token")
+		if err != nil || token == "" {
 			c.Set("is_logged_in", false)
 		}
+		c.Set("is_logged_in", true)
 	}
 }
