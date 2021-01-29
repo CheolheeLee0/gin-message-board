@@ -15,17 +15,17 @@
 
 ```shell
 ├── gin-message-board	# 根目录
-│   ├──  config		    # 配置目录
+│   ├──  config		# 配置目录
 │   ├──  crontrollers	# 控制器目录	
-│   ├──  database	    # 数据库目录
+│   ├──  database	# 数据库目录
 │   ├──  middlewares	# 中间件目录
-│   ├──  models		    # 模型目录
-│   ├──  templates	    # 模板目录
+│   ├──  models		# 模型目录
+│   ├──  templates	# 模板目录
 │   ├──  tests	        # 测试目录
 │   ├──  tools	        # 其他工具目录
 └── go.mod
 └── go.sum	
-└── main.go	            # 项目入口文件
+└── main.go	        # 项目入口文件
 ```
 
 
