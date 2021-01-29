@@ -27,20 +27,19 @@
 package main
 
 import (
+	"gin-message-board/config"
+	"gin-message-board/database"
+	"gin-message-board/routers"
+
 	"github.com/gin-gonic/gin"
 )
 
 var router *gin.Engine
 
 func main() {
-
-	router = gin.Default()
-
-	// 在一开始就处理模板，这样就不必再从磁盘加载它们了。
-	router.LoadHTMLGlob("templates/*")
-
-	// 初始化路由
-	initializeRoutes()
+	config.Init()
+	database.Init()
+	var router = routers.InitializeRoutes()
 
 	// 启动服务
 	router.Run()

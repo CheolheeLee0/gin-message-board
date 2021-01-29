@@ -1,9 +1,10 @@
-// common_test.go
+// test_tools.go
 // 辅助测试函数
 
-package tests
+package tools
 
 import (
+	auth "gin-message-board/middlewares"
 	"gin-message-board/models"
 
 	"net/http"
@@ -14,6 +15,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var tmpUserList []models.User
 var tmpMessageList []models.Message
 
 // 在执行测试函数之前进行setup
@@ -26,16 +28,17 @@ func TestMain(m *testing.M) {
 }
 
 // 在测试期间创建getRouter函数
-func getRouter(withTemplates bool) *gin.Engine {
+func GetRouter(withTemplates bool) *gin.Engine {
 	r := gin.Default()
 	if withTemplates {
 		r.LoadHTMLGlob("templates/*")
+		r.Use(auth.SetUserStatus())
 	}
 	return r
 }
 
 // 处理请求并测试其响应的函数
-func testHTTPResponse(t *testing.T, r *gin.Engine, req *http.Request, f func(w *httptest.ResponseRecorder) bool) {
+func TestHTTPResponse(t *testing.T, r *gin.Engine, req *http.Request, f func(w *httptest.ResponseRecorder) bool) {
 
 	// 创建响应记录器
 	w := httptest.NewRecorder()
@@ -49,11 +52,22 @@ func testHTTPResponse(t *testing.T, r *gin.Engine, req *http.Request, f func(w *
 }
 
 // 这个函数用于将主列表存储到临时列表中进行测试
-func saveLists() {
+func SaveLists() {
+	tmpUserList = models.UserList
 	tmpMessageList = models.MessageList
 }
 
 // 此函数用于从临时列表恢复主列表
-func restoreLists() {
+func RestoreLists() {
+	models.UserList = tmpUserList
 	models.MessageList = tmpMessageList
+}
+
+// 测试中间件请求
+func TestMiddlewareRequest(t *testing.T, r *gin.Engine, expectedHTTPCode int) {
+	req, _ := http.NewRequest("GET", "/", nil)
+
+	TestHTTPResponse(t, r, req, func(w *httptest.ResponseRecorder) bool {
+		return w.Code == expectedHTTPCode
+	})
 }

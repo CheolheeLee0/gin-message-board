@@ -1,9 +1,9 @@
-//handlers.message_handler_test.go
-
 package tests
 
 import (
 	"gin-message-board/controllers"
+	"gin-message-board/tools"
+
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -13,14 +13,14 @@ import (
 
 // 测试对主页的匿名GET请求是否返回主页
 func TestShowIndexPageUnauthenticated(t *testing.T) {
-	r := getRouter(true)
+	r := tools.GetRouter(true)
 
 	r.GET("/", controllers.ShowIndexPage)
 
 	// 创建一个请求以发送到上述路由
 	req, _ := http.NewRequest("GET", "/", nil)
 
-	testHTTPResponse(t, r, req, func(w *httptest.ResponseRecorder) bool {
+	tools.TestHTTPResponse(t, r, req, func(w *httptest.ResponseRecorder) bool {
 		// 测试http状态码是否为200
 		statusOK := w.Code == http.StatusOK
 

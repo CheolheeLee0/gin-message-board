@@ -13,6 +13,9 @@ type Message struct {
 	Content string `json:"content"`
 }
 
+/*
+	硬编码方式返回留言
+*/
 var MessageList = []Message{
 	Message{ID: 1, Title: "留言标题1", Content: "留言内容1"},
 	Message{ID: 2, Title: "留言标题2", Content: "留言内容2"},
