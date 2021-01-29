@@ -1,0 +1,6 @@
+[database]
+server = "localhost"
+ports = 5432
+username = "postgres"
+password = "hjt82572799"
+dbname = "gin_message_board"

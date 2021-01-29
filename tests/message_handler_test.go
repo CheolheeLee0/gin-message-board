@@ -1,8 +1,9 @@
-//handlers.message_test.go
+//handlers.message_handler_test.go
 
-package main
+package tests
 
 import (
+	"gin-message-board/controllers"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -14,7 +15,7 @@ import (
 func TestShowIndexPageUnauthenticated(t *testing.T) {
 	r := getRouter(true)
 
-	r.GET("/", showIndexPage)
+	r.GET("/", controllers.ShowIndexPage)
 
 	// 创建一个请求以发送到上述路由
 	req, _ := http.NewRequest("GET", "/", nil)

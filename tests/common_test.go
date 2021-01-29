@@ -1,9 +1,11 @@
 // common_test.go
 // 辅助测试函数
 
-package main
+package tests
 
 import (
+	"gin-message-board/models"
+
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -12,7 +14,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var tmpMessageList []message
+var tmpMessageList []models.Message
 
 // 在执行测试函数之前进行setup
 func TestMain(m *testing.M) {
@@ -48,10 +50,10 @@ func testHTTPResponse(t *testing.T, r *gin.Engine, req *http.Request, f func(w *
 
 // 这个函数用于将主列表存储到临时列表中进行测试
 func saveLists() {
-	tmpMessageList = messageList
+	tmpMessageList = models.MessageList
 }
 
 // 此函数用于从临时列表恢复主列表
 func restoreLists() {
-	messageList = tmpMessageList
+	models.MessageList = tmpMessageList
 }
