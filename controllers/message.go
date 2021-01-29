@@ -38,8 +38,7 @@ func GetMessage(c *gin.Context) {
 	// 检查留言在数据库中是否存在
 	message, err := database.GetMessageByID(messageID)
 	if err != nil {
-		// TODO ERROR 格式化
-		fmt.Errorf("留言在数据库中不存在：%+v \n", c.AbortWithError(http.StatusNotFound, err))
+		panic(fmt.Errorf("留言在数据库中不存在：%s \n", c.AbortWithError(http.StatusNotFound, err).Error()))
 	}
 	c.HTML(
 		http.StatusOK,
